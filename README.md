@@ -306,8 +306,7 @@ This tool is designed for educational and authorized security testing purposes o
 
 For issues, questions, or suggestions:
 - Open an issue on GitHub
-- Contact: your-email@example.com
-- Documentation: https://docs.example.com
+- Contact: vaityrugved@gmail.com
 
 ## Changelog
 
