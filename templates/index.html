@@ -3,52 +3,103 @@
 <head>
     <title>Digital Footprint Tracker</title>
     <link rel="stylesheet" href="/static/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-
     <div class="container">
-        <h1>🕵️ Digital Footprint Tracker</h1>
-
-        <form method="POST">
-            <input type="text" name="username" placeholder="Enter username" required>
-            <button type="submit">Scan</button>
-        </form>
-        {% if results %}
-    <h2>Risk Score: {{ risk_score }}%</h2>
-
-    <div class="results">
-        {% for site, status in results.items() %}
-            <div class="card">
-                <h3>{{ site }}</h3>
-                <p>
-                    {% if status %}
-                        Found ✅
-                    {% else %}
-                        Not Found ❌
-                    {% endif %}
-                </p>
+        <div class="header">
+            <h1>🕵️ Digital Footprint Tracker</h1>
+            <p>Discover your online presence across platforms</p>
+            <div class="auth-buttons">
+                {% if is_authenticated %}
+                    <span class="user-name">{{ current_user.username }}</span>
+                    <a href="/auth/logout" class="btn btn-logout">Logout</a>
+                    <a href="/dashboard" class="btn btn-secondary">Dashboard</a>
+                {% else %}
+                    <a href="/auth/login" class="btn btn-secondary">Login</a>
+                    <a href="/auth/register" class="btn btn-primary">Register</a>
+                {% endif %}
             </div>
-        {% endfor %}
-    </div>
-{% endif %}
+        </div>
+
+        <form method="POST" class="search-form">
+            <div class="input-group">
+                <input type="text" name="username" placeholder="Enter username to scan" required>
+                <button type="submit" class="btn btn-primary">Scan Now</button>
+            </div>
+        </form>
 
         {% if results %}
-            <div class="results">
-                {% for site, status in results.items() %}
-                    <div class="card">
-                        <h3>{{ site }}</h3>
-                        <p>
-                            {% if status %}
-                                Found ✅
-                            {% else %}
-                                Not Found ❌
-                            {% endif %}
-                        </p>
+            <div class="results-summary">
+                <h2>Scan Results Summary</h2>
+                <div class="risk-display">
+                    <div class="risk-score">
+                        <div class="score-value">{{ risk_score }}%</div>
+                        <div class="score-label">Risk Score</div>
                     </div>
-                {% endfor %}
+                    <div class="weighted-risk-score">
+                        <div class="score-value">{{ "%.1f"|format(weighted_risk_score) }}%</div>
+                        <div class="score-label">Weighted Risk</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="results">
+                <h3>Platforms Found</h3>
+                <div class="results-grid">
+                    {% set found_platforms = [] %}
+                    {% set not_found_platforms = [] %}
+
+                    {% for site, status in results.items() %}
+                        {% if status.found %}
+                            {% set _ = found_platforms.append((site, status)) %}
+                        {% else %}
+                            {% set _ = not_found_platforms.append((site, status)) %}
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if found_platforms %}
+                        <h4>Found On ({{ found_platforms|length }})</h4>
+                        {% for site, status in found_platforms %}
+                            <div class="card card-found severity-{{ status.severity }}">
+                                <div class="card-header">
+                                    <h4>{{ site }}</h4>
+                                    <span class="badge severity-{{ status.severity }}">{{ status.severity }}</span>
+                                </div>
+                                <p class="card-status">✅ Found</p>
+                                <p class="card-category">{{ status.category }}</p>
+                                <p class="card-reason">{{ status.reason }}</p>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if not_found_platforms %}
+                        <h4 style="grid-column: 1/-1;">Not Found On ({{ not_found_platforms|length }})</h4>
+                        {% for site, status in not_found_platforms %}
+                            <div class="card card-not-found">
+                                <div class="card-header">
+                                    <h4>{{ site }}</h4>
+                                    <span class="badge">{{ status.category }}</span>
+                                </div>
+                                <p class="card-status">❌ Not Found</p>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+
+            {% if is_authenticated %}
+                <div class="export-buttons">
+                    <button class="btn btn-secondary">Export as PDF</button>
+                    <button class="btn btn-secondary">Export as CSV</button>
+                    <button class="btn btn-secondary">Export as JSON</button>
+                </div>
+            {% endif %}
+        {% else %}
+            <div class="welcome-message">
+                <p>Scan a username to discover which platforms they're using and assess their digital footprint.</p>
             </div>
         {% endif %}
     </div>
-
 </body>
 </html>

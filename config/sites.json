@@ -1,0 +1,128 @@
+{
+  "GitHub": {
+    "url": "https://github.com/{username}",
+    "severity": "medium",
+    "detection_type": "status_code",
+    "category": "Developer",
+    "icon": "github"
+  },
+  "Reddit": {
+    "url": "https://www.reddit.com/user/{username}",
+    "severity": "medium",
+    "detection_type": "content",
+    "category": "Social",
+    "icon": "reddit"
+  },
+  "Twitter": {
+    "url": "https://twitter.com/{username}",
+    "severity": "high",
+    "detection_type": "status_code",
+    "category": "Social",
+    "icon": "twitter"
+  },
+  "Instagram": {
+    "url": "https://instagram.com/{username}",
+    "severity": "high",
+    "detection_type": "status_code",
+    "category": "Social",
+    "icon": "instagram"
+  },
+  "TikTok": {
+    "url": "https://www.tiktok.com/@{username}",
+    "severity": "high",
+    "detection_type": "status_code",
+    "category": "Social",
+    "icon": "tiktok"
+  },
+  "LinkedIn": {
+    "url": "https://www.linkedin.com/in/{username}",
+    "severity": "high",
+    "detection_type": "status_code",
+    "category": "Professional",
+    "icon": "linkedin"
+  },
+  "YouTube": {
+    "url": "https://www.youtube.com/@{username}",
+    "severity": "medium",
+    "detection_type": "status_code",
+    "category": "Video",
+    "icon": "youtube"
+  },
+  "Twitch": {
+    "url": "https://www.twitch.tv/{username}",
+    "severity": "medium",
+    "detection_type": "status_code",
+    "category": "Streaming",
+    "icon": "twitch"
+  },
+  "Pinterest": {
+    "url": "https://www.pinterest.com/{username}",
+    "severity": "low",
+    "detection_type": "status_code",
+    "category": "Social",
+    "icon": "pinterest"
+  },
+  "Snapchat": {
+    "url": "https://www.snapchat.com/add/{username}",
+    "severity": "medium",
+    "detection_type": "status_code",
+    "category": "Social",
+    "icon": "snapchat"
+  },
+  "Discord": {
+    "url": "https://discord.com/users/{username}",
+    "severity": "medium",
+    "detection_type": "status_code",
+    "category": "Communication",
+    "icon": "discord"
+  },
+  "Medium": {
+    "url": "https://medium.com/@{username}",
+    "severity": "low",
+    "detection_type": "status_code",
+    "category": "Writing",
+    "icon": "medium"
+  },
+  "Quora": {
+    "url": "https://www.quora.com/profile/{username}",
+    "severity": "low",
+    "detection_type": "status_code",
+    "category": "Q&A",
+    "icon": "quora"
+  },
+  "Stack Overflow": {
+    "url": "https://stackoverflow.com/users/{username}",
+    "severity": "low",
+    "detection_type": "status_code",
+    "category": "Developer",
+    "icon": "stackoverflow"
+  },
+  "CodePen": {
+    "url": "https://codepen.io/{username}",
+    "severity": "low",
+    "detection_type": "status_code",
+    "category": "Developer",
+    "icon": "codepen"
+  },
+  "Patreon": {
+    "url": "https://www.patreon.com/{username}",
+    "severity": "low",
+    "detection_type": "status_code",
+    "category": "Funding",
+    "icon": "patreon"
+  },
+  "Telegram": {
+    "url": "https://t.me/{username}",
+    "severity": "medium",
+    "detection_type": "status_code",
+    "category": "Communication",
+    "icon": "telegram"
+  },
+  "WeChat": {
+    "url": "https://wechat.com/{username}",
+    "severity": "medium",
+    "detection_type": "content",
+    "category": "Communication",
+    "icon": "wechat"
+  }
+}

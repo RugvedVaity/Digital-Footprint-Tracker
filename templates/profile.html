@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile - Digital Footprint Tracker</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>👤 Profile</h1>
+            <div class="auth-buttons">
+                <a href="/dashboard" class="btn btn-secondary">Dashboard</a>
+                <a href="/auth/logout" class="btn btn-logout">Logout</a>
+            </div>
+        </div>
+
+        <div class="profile-container">
+            <div class="profile-card">
+                <h2>Account Information</h2>
+                <div class="profile-info">
+                    <div class="info-row">
+                        <label>Username:</label>
+                        <span>{{ user.username }}</span>
+                    </div>
+                    <div class="info-row">
+                        <label>Email:</label>
+                        <span>{{ user.email }}</span>
+                    </div>
+                    <div class="info-row">
+                        <label>Member Since:</label>
+                        <span>{{ user.created_at.strftime('%b %d, %Y') }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <h2>Account Settings</h2>
+                <div class="settings-group">
+                    <button class="btn btn-secondary">Change Password</button>
+                    <button class="btn btn-secondary">Update Email</button>
+                    <button class="btn btn-secondary">Notification Preferences</button>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <h2>Danger Zone</h2>
+                <p>Irreversible actions:</p>
+                <button class="btn btn-danger">Delete Account</button>
+                <button class="btn btn-danger">Clear All Data</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
