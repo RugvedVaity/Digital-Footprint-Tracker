@@ -13,6 +13,24 @@
             <input type="text" name="username" placeholder="Enter username" required>
             <button type="submit">Scan</button>
         </form>
+        {% if results %}
+    <h2>Risk Score: {{ risk_score }}%</h2>
+
+    <div class="results">
+        {% for site, status in results.items() %}
+            <div class="card">
+                <h3>{{ site }}</h3>
+                <p>
+                    {% if status %}
+                        Found ✅
+                    {% else %}
+                        Not Found ❌
+                    {% endif %}
+                </p>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
 
         {% if results %}
             <div class="results">
