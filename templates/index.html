@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Digital Footprint Tracker</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>🕵️ Digital Footprint Tracker</h1>
+
+        <form method="POST">
+            <input type="text" name="username" placeholder="Enter username" required>
+            <button type="submit">Scan</button>
+        </form>
+
+        {% if results %}
+            <div class="results">
+                {% for site, status in results.items() %}
+                    <div class="card">
+                        <h3>{{ site }}</h3>
+                        <p>
+                            {% if status %}
+                                Found ✅
+                            {% else %}
+                                Not Found ❌
+                            {% endif %}
+                        </p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
