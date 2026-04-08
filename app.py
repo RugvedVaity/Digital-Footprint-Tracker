@@ -9,7 +9,7 @@ from config import config
 from models import db, User, Scan, SearchHistory
 from username_scan import check_username, check_usernames_batch
 from logger import setup_logging, log_user_action, log_api_call
-from email import mail
+from mail_service import mail
 from auth import auth_bp
 import os
 
@@ -45,7 +45,11 @@ def load_user(user_id):
 @app.before_request
 def before_request():
     """Create database tables if they don't exist"""
-    db.create_all()
+    try:
+        db.create_all()
+    except Exception as e:
+        logger.error(f"Database initialization error: {str(e)}")
+        # Don't crash the app if DB fails, just log it
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -307,4 +311,5 @@ def internal_error(e):
 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    port = int(os.getenv('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=False)
