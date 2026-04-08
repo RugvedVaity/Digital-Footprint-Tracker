@@ -2,11 +2,8 @@
   "buildCommand": "pip install -r requirements.txt",
   "framework": "flask",
   "functions": {
-    "api/**/*.py": {
+    "api/index.py": {
       "maxDuration": 30
     }
-  },
-  "env": {
-    "FLASK_ENV": "production"
   }
 }
